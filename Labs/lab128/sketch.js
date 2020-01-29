@@ -8,7 +8,8 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-loadBoids(10);
+  frameRate(20);
+loadBoids(5);
 
 }
 
@@ -17,13 +18,13 @@ function draw() {
 runBoids();
 }
 
-function loadBoids(n){
+function loadBoids(n){ // loads boid array
   for (var i =0; i< n; i++){
-    boids[i] = new Boid(random(width), random(height), random(-1,1), random(-1,1));
+    boids[i] = new Boid(random(width), random(height), random(-3,3), random(-3,3),0);
     }
   }
 
-function runBoids(){
+function runBoids(){ // runs boids
   for (var i =0; i<boids.length; i++){
     boids[i].run();
     }

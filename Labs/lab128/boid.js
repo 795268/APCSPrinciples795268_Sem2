@@ -6,7 +6,7 @@ constructor(x, y, dx, dy,){
   this.loc = createVector(x, y);
   this.vel = createVector (dx, dy);
   this.acc = createVector (0, -1);
-  this.clr = color(random(255), random(255), random(255));
+  this.clr =color( random (255), random(255), random(255));
 }
 
 run(){
@@ -20,20 +20,20 @@ update(){
 }
 
 render(){
-  for ( var i =boids.length; i >0; i--){
-    if(this.loc.dist(boids[i].loc)<200){
-      fill(this.clr);
-      line(this.loc.x, this.loc.y, boids[i].loc.x,boids[i].loc.y );
+  for ( var i =boids.length-1; i >0; i--){ // goes through array
+    if(this.loc.dist(boids[i].loc)<200){ // if the distance between two bois is less than 200
+      stroke(this.clr);
+      line(this.loc.x, this.loc.y, boids[i].loc.x,boids[i].loc.y ); // draw a line
     }
   }
 
 }
 
 
-checkEdges(){
-  if(this.loc.x< 0) {this.vel. x = -this.vel.x}
+checkEdges(){ // to bounce off edges
+  if(this.loc.x< 0) {this.loc.x = width}
   if (this.loc.x> width) this.vel.x = -this.vel.x;
-  if (this.loc.y < 0) this.vel.y = - this.vel.y;
+  if (this.loc.y < 0) this.loc.y = height;
   if(this.loc.y> height) this.vel.y = -this.vely;
 }
 
