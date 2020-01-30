@@ -31,10 +31,10 @@ render(){
 
 
 checkEdges(){ // to bounce off edges
-  if(this.loc.x< 0) {this.loc.x = width}
-  if (this.loc.x> width) this.vel.x = -this.vel.x;
+  if(this.loc.x< 0) this.vel.x = -this.vel.x
+  if (this.loc.x> width) this.loc.x = -this.vel.x;
   if (this.loc.y < 0) this.loc.y = height;
-  if(this.loc.y> height) this.vel.y = -this.vely;
+  if(this.loc.y> height) this.vel.y = -this.vel.y;
 }
 
 }// end boid class

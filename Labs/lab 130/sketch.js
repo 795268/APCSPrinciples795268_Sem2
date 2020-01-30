@@ -1,7 +1,8 @@
 //  Elena Campell
-// lab 1/28
+// lab 1/30
 
 var boids = [];
+var orbiters = []
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -9,7 +10,7 @@ function setup() {
   background(5, 5, 5);
   fill(200, 30, 150);
   frameRate(20);
-loadBoids(10);
+loadObjects(1 );
 
 }
 
@@ -17,17 +18,24 @@ loadBoids(10);
 function draw() {
 //  background(5,5,5,5);
 
-runBoids();
+runObjects();
 }
 
-function loadBoids(n){ // loads boid array
+function loadObjects(n){ // loads boid array
   for (var i =0; i< n; i++){
-    boids[i] = new Boid(random(width), random(height), random(-3,3), random(-1,1),0);
+    boids[i] = new Boid(random(width), random(height), 0, 0,);
     }
+    for (var i =0; i< 3*n; i++){
+      orbiters[i] = new Orbiter();
+      }
   }
 
-function runBoids(){ // runs boids
+
+function runObjects(){ // runs boids
   for (var i =0; i<boids.length; i++){
     boids[i].run();
     }
+    for (var i =0; i<orbiters.length; i++){
+      orbiters[i].run();
+      }
   }
