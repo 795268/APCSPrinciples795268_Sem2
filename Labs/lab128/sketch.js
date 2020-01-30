@@ -9,7 +9,7 @@ function setup() {
   background(5, 5, 5);
   fill(200, 30, 150);
   frameRate(20);
-loadBoids(5);
+loadBoids(7);
 
 }
 
@@ -20,7 +20,7 @@ runBoids();
 
 function loadBoids(n){ // loads boid array
   for (var i =0; i< n; i++){
-    boids[i] = new Boid(random(width), random(height), random(-3,3), random(-3,3),0);
+    boids[i] = new Boid(random(width), random(height), random(-3,3), random(-1,1),0);
     }
   }
 
