@@ -1,7 +1,7 @@
 //  Elena Campell
 //1/31 art two
 
-var balls = [];
+var boids = [];
 var mouseR;
 
 function setup() {
@@ -22,7 +22,7 @@ background(5,5,5);
 
 function loadBalls(n){
   for (var i = 0; i< n; i++){
-    balls[i] = new Ball(random(width), random(height), random(-3,3), random(-3,3));
+    boids[i] = new Boid(random(0, 800), 400, random(-1, 1), random(-1, 1));
   }
 }
 
@@ -31,7 +31,7 @@ function mouseReleased(){
 }
 
 function runBalls(){
-  for (var i = 0; i< balls.length; i++){
-      balls[i].run();
+  for (var i = 0; i< boids.length; i++){
+      boids[i].run();
     }
 }
