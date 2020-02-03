@@ -9,7 +9,7 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  loadObjects(70);
+  loadObjects(500);
 
 }
 
@@ -22,7 +22,7 @@ background(5,5,5);
 
 function loadObjects(n){
   for (var i = 0; i< n; i++){
-    balls[i] = new Ball(random(width), random(height), random(-1, 1), random(-1, 1));
+    balls[i] = new Ball(random(width), random(height), random(-3, 3), random(-3, 3));
   }
   for (var i = 0; i< 3; i++){
 boids[i] = new Boid(random(width), random(height), random(-1, 1), random(-1, 1));

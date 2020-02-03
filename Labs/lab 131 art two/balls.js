@@ -4,9 +4,9 @@ class Ball{
 constructor (x,y, dx,dy, clr,w ){
   this.loc = createVector(x, y);
   this.vel = createVector(dx, dy);
-  this.acc = createVector(0,0);
+  this.acc = createVector(0,1);
   this.clr = color(random(255), random(255), random(255));
-  this.w = random(10,50);
+  this.w = random(20,60);
 }
 
 run(){
@@ -21,45 +21,23 @@ render(){
 
 }
 update(){
-  this.vel.add(this.acc);//adds acceleration to velocity
   this.loc.add(this.vel);
-  this.vel.limit(5);
-  for (var i = 0; i< boids.length; i++){
-    if(this.loc.dist(boids[i].loc)<200){
-      // this.acc = p5.Vector.sub(boids[i].loc, this.loc);
-      //     this.acc.normalize();
-      //     this.acc.mult(0.5);
-          if(i = 1){
-          this.clr = color(10,10, random(50,255));
-        }else if(i=2){
-          this.clr = color(10,random(50,255),10)
-          } else if (i = 3){
-            this.clr = color(random(50,255), 10, 10 );
-          }
+  this.acc.limit(5);
+      if(this.loc.dist(boids[0].loc)<200){
+            this.clr = color(30,30, random(50,255));
+          }else if(this.loc.dist(boids[1].loc)<200){
+            this.clr = color(30,random(50,255),30)
+          } else if (this.loc.dist(boids[2].loc)<200){
+              this.clr = color(random(50,255), 30, 30 );
+            }
+    for ( var i =boids.length-1; i >=0; i--){ // goes through array
+      if(this.loc.dist(boids[i].loc)<200){ // if the distance between two bois is less than 200
+          stroke(this.clr);
+        line(this.loc.x, this.loc.y, boids[i].loc.x,boids[i].loc.y ); // draw a line
         }
     }
+}
 
-  }
-
-  //reateVector (mouseX, mouseY)
-//   this.vel.limit(5);
-//    this.vel.add(this.acc);
-//  this.loc.add(this.vel);
-//   if (mouseIsPressed){
-//     this.acc = p5.Vector.sub(mouseLoc, this.loc);
-//     this.acc.normalize();
-//     this.acc.mult(0.5);
-//     this.clr = color(255);
-//   }
-//   if(mouseReleased()= true){
-//     this.acc = random(0,1);
-//     this.clr = color(random(255), random(255), random(255));
-//   }
-// }
-  // mouseIsReleased(){
-//    this.acc = random(0,1);
-  //  this.clr = color(random(255), random(255), random(255));
-  // }
 
 
 checkEdges(){
