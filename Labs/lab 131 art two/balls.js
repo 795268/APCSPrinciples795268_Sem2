@@ -21,21 +21,41 @@ render(){
 
 }
 update(){
-  var mouseLoc = createVector (mouseX, mouseY)
+  this.vel.add(this.acc);//adds acceleration to velocity
+  this.loc.add(this.vel);
   this.vel.limit(5);
-   this.vel.add(this.acc);
- this.loc.add(this.vel);
-  if (mouseIsPressed){
-    this.acc = p5.Vector.sub(mouseLoc, this.loc);
-    this.acc.normalize();
-    this.acc.mult(0.5);
-    this.clr = color(255);
+  for (var i = 0; i< boids.length; i++){
+    if(this.loc.dist(boids[i].loc)<200){
+      // this.acc = p5.Vector.sub(boids[i].loc, this.loc);
+      //     this.acc.normalize();
+      //     this.acc.mult(0.5);
+          if(i = 1){
+          this.clr = color(10,10, random(50,255));
+        }else if(i=2){
+          this.clr = color(10,random(50,255),10)
+          } else if (i = 3){
+            this.clr = color(random(50,255), 10, 10 );
+          }
+        }
+    }
+
   }
-  if(mouseReleased()= true){
-    this.acc = random(0,1);
-    this.clr = color(random(255), random(255), random(255));
-  }
-}
+
+  //reateVector (mouseX, mouseY)
+//   this.vel.limit(5);
+//    this.vel.add(this.acc);
+//  this.loc.add(this.vel);
+//   if (mouseIsPressed){
+//     this.acc = p5.Vector.sub(mouseLoc, this.loc);
+//     this.acc.normalize();
+//     this.acc.mult(0.5);
+//     this.clr = color(255);
+//   }
+//   if(mouseReleased()= true){
+//     this.acc = random(0,1);
+//     this.clr = color(random(255), random(255), random(255));
+//   }
+// }
   // mouseIsReleased(){
 //    this.acc = random(0,1);
   //  this.clr = color(random(255), random(255), random(255));

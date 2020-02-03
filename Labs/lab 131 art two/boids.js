@@ -1,10 +1,9 @@
 // elena campell
 class Boid {//creates boid class
-  constructor(x, y, vx, vy){
+  constructor(x, y, dx, dy){
     this.loc = createVector(x, y);
-    this.vel = createVector(vx, vy);
+    this.vel = createVector(dx, dy);
     this.acc = createVector(0, 0);
-    //this.clr = color(255,105,180);
     this.clr = color(random(0, 255), random(0, 255), random(0, 255));
   }
 
@@ -26,16 +25,16 @@ class Boid {//creates boid class
     // this.acc.normalize();
     // this.acc.mult(0.1);
   }
-
-  render(){//makes lines between the boids
-    for(var i = boids.length - 1; i > 0; i--){
-      if(this.loc.dist(boids[i].loc) < 200){
-        stroke(this.clr);
-        line(400, 400, boids[i].loc.x, boids[i].loc.y);
-      }
-    }
-    ellipse(this.loc.x, this.loc.y, 30, 30);
-  }
+  //
+  // render(){//makes lines between the boids
+  //   for(var i = boids.length - 1; i > 0; i--){
+  //     if(this.loc.dist(boids[i].loc) < 200){
+  //       stroke(this.clr);
+  //       line(400, 400, boids[i].loc.x, boids[i].loc.y);
+  //     }
+  //   }
+  //   ellipse(this.loc.x, this.loc.y, 30, 30);
+  // }
 
   checkEdges(){//makes the boids bounce when they hit the edge of the canvas
     if(this.loc.x < 0){
