@@ -3,44 +3,43 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var statsArray = [];
+var chosenPlayers = [];
 function setup() {
   var cnv = createCanvas(800, 800);
 cnv.position((windowWidth-width)/2, 30);
  background(5, 5, 5);
  loadStats();
   fill(200, 30, 150);
-  input = createInput();
- input.position(400, 65);
- //button.mousePressed(search);
-
- //
-  button = createButton('search');
-  button.position(input.x + input.width, 65);
+//  input = createInput();
+//  button = createButton('search');
+  //button.position(input.x + input.width, 65);
   createPlayerSelectionList();
-  verticalText('Points', 20,400);
+  verticalText('3 Points', 20,400);
 }
 
 //  The draw function is called @ 30 fps
 function draw() {
+  getSelectedPlayers();
+  for (var i = 0; i < chosenPlayers.length; i ++){
+    loadPlayerStats(chosenPlayers[i]);
+    }
+  aggregateStats();
+  getYears();
+  getSmall();
+  getLarge();
 
-loadPlayerStats('Klay Thompson');
-aggregateStats();
-getYears();
-getSmall();
-getLarge();
 
+  fill(130,107,85);//Brown
+  rect(40,780, 720, 20)
+  strokeWeight(6);// outline shapes
+  stroke(255);
+  ellipse(400,780, 720,820);
+  fill(150,151, 158); // grey
+  ellipse(400, 500, 240,240);
+  fill(54,63,227 ); // blue
+  rect(280, 500, 240, 300);
 
-fill(130,107,85);//Brown
-rect(40,780, 720, 20)
-strokeWeight(6);// outline shapes
-stroke(255);
-ellipse(400,780, 720,820);
-fill(150,151, 158); // grey
-ellipse(400, 500, 240,240);
-fill(54,63,227 ); // blue
-rect(280, 500, 240, 300);
-
-graph();
+  graph();
 }
 
 function createPlayerSelectionList() {
@@ -51,9 +50,14 @@ playerSel.position((windowWidth-width)/2 + 40, (windowHeight-height)/2 ); // loc
 playerSel.size(150, 200);
 for(var i = 0; i < players.length; i++){ // loads selection list with all players from player array
    playerSel.option(players[i]);
- }
+  }
+//  playerSel.changed(selectPlayer());
+}
+
+function changePlayer(){
 
 }
+
 function getSelectedPlayers() {
   chosenPlayers = [];
   for (var i = 0; i < playerSel.elt.selectedOptions.length; i++) {
