@@ -14,11 +14,12 @@ cnv.position((windowWidth-width)/2, 30);
 //  button = createButton('search');
   //button.position(input.x + input.width, 65);
   createPlayerSelectionList();
-  verticalText('3 Points', 20,400);
+
 }
 
 //  The draw function is called @ 30 fps
 function draw() {
+
   getSelectedPlayers();
   for (var i = 0; i < chosenPlayers.length; i ++){
     loadPlayerStats(chosenPlayers[i]);
@@ -28,7 +29,8 @@ function draw() {
   getSmall();
   getLarge();
 
-
+fill(150,151, 158);
+rect(0,0,width,height);
   fill(130,107,85);//Brown
   rect(40,780, 720, 20)
   strokeWeight(6);// outline shapes
@@ -38,7 +40,7 @@ function draw() {
   ellipse(400, 500, 240,240);
   fill(54,63,227 ); // blue
   rect(280, 500, 240, 300);
-
+verticalText('3 Points', 20,400);
   graph();
 }
 
