@@ -18,3 +18,4 @@ isClicked(){ // to check if that button is pressed
           return true;
   }
 }
+}

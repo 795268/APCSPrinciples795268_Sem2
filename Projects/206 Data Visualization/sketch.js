@@ -48,7 +48,7 @@ function createPlayerSelectionList() {
   textAlign(CENTER);
 background(200);
 playerSel = createSelect(true);
-playerSel.position((windowWidth-width)/2 + 40, (windowHeight-height)/2 ); // locate at 270,40 in canvas coordinates
+playerSel.position((windowWidth-width)/2 + 40, (windowHeight-height)/2 +60); // locate at 270,40 in canvas coordinates
 playerSel.size(150, 200);
 for(var i = 0; i < players.length; i++){ // loads selection list with all players from player array
    playerSel.option(players[i]);
