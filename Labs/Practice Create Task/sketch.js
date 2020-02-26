@@ -2,125 +2,124 @@
 // 	2/25 practice create
 //  This is a comment
 //  The setup function function is called once when your program begins
-var bars=[0] ;
-var balls=[0] ;
+var bars=[] ;
+var balls=[] ;
 
 var barWidth, barHeight;
-var sortOption = 1;
-var  btnbarSort, btnballSort;
+var gameState = 1;
+var  btnbarSort, btnballSort, btnBTM;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  loadBars();
-  loadBalls();
-  runBalls();
+  loadObjects();
   frameRate(5);
-  runBars();
   newButton();
-
 }
 
 function draw() {
-  background(5,5,5);
-  if (sortOption ===1){
+//  background(5,5,5);
+  if (gameState ===1){
     startGame(); //start screen
-  }else if (sortOption === 2){
-    barSort(); //game screen
-  }else if (sortOption === 3){
-      ballSort();
+  }else if (gameState === 2){//bar sort
+barSort();
+  }else if (gameState === 3){ //ball sort
+    ballSort();
     }
 }
-
 
 function newButton(){
   btnbarSort = new Button (150, 300, 150, 200, color(50, 100, 100));
   btnballSort = new Button (500, 300, 150, 200, color(100,50,100));
+  btnBTM = new Button ( 350,500,100, 200, color(100,100,50) );
 }
 
+function barSort(){
+  btnBTM.render();
+  bubbleSort();
+
+}
+
+function ballSort(){
+  btnBTM.render();
+bubbleSort();
+}
 function startGame(){
   btnbarSort.render();
   btnballSort.render();
   fill(255);
-  textsize(20);
-  text('Bar Sort', 200, 550);
-  text('Ball Sort', 500, 550);
+  textSize(20);
+  text('Bar Sort', 180, 550);
+  text('Ball Sort', 530, 550);
   if (btnbarSort.isClicked()=== true){ //go to instructions page
-    sortOption = 2;
+    gameState = 2;
   }else if (btnballSort.isClicked()===true){
-    sortOption = 3;
+    gameState = 3;
   }
 }
-function barSort(){
-bubbleSortBars();
-}
 
-function ballSort(){
-  bubbleSortBalls();
-}
-function loadBars(){
+function loadObjects(){
   for (var i = 0; i< 40; i++){
     barWidth = (width/40);
     barHeight = Math.floor(random(1, height));
     bars[i]= new Bar(i*barWidth, height-barHeight, barWidth, barHeight);
   }
-}
-
-function runBars(){
-  for (var i = 0; i<bars.length; i++){
-    bars[i].run();
+  for (var i =0 ; i < 20; i++){
+    var red = random(0,255);
+    balls[i] = new Ball (i*40+20, 400, color(red, 0, 0), red);
   }
 }
 
-function  updateBars(){
-  for(var i=0; i<bars.length; i++){
-    bars[i].set(i);
+function runObjects(){
+  if (gameState===2){
+    for (var i = 0; i<bars.length; i++){
+      bars[i].run();
+    }
+  }else if (gameState===3 ){
+    for (var i =0 ; i<balls.length; i++){
+      balls[i].run();
+      }
+    }
   }
-  background(0);
-  runBars();
-}
 
-function bubbleSortBars(){
 
+function bubbleSort(){
+  if (gameState===2 ){
   for (var j = 0; j < bars.length-1; j++){
     if (bars[j].getHeight()> bars[j+1].getHeight()){
     swap(bars, j, j+1);
     update();
     }
   }
+}else if (gameState===3){
+  for (var j = 0; j < balls.length-1; j++){
+    if (balls[j].getColor()< balls[j+1].getColor()){ // sorts by color
+    swap(balls, j, j+1);
+    update();
+      }
+    }
+  }
 }
+
+function  update(){
+  if (gameState ===2 ){
+    for(var i=0; i<bars.length; i++){
+      bars[i].set(i);
+    }
+    background(0);
+    runObjects();
+  }else if (gameState===3){
+    for(var i=0; i<balls.length; i++){
+      balls[i].set(i);
+    }
+    background(200,200,200);
+    runObjects();
+  }
+}  // end update
 
 function swap(arr, a, b){ //swap
     var temp = arr[a];
     arr[a] = arr[b];
     arr[b] = temp;
-}
-
-function loadBalls(n){
-  for (var i =0 ; i < n; i++){
-    var red = random(0,255);
-    balls[i] = new Ball (i*40+20, 400, color(red, 0, 0), red);
-  }
-}
-function runBalls(){
-for (var i =0 ; i<balls.length; i++){
-  balls[i].run();
-    }
-}
-function  updateBalls(){
-  for(var i=0; i<balls.length; i++){
-    balls[i].set(i);
-  }
-  background(200,200,200);
-  runBalls();
-}
-function bubbleSortBalls(){
-
-  for (var j = 0; j < balls.length-1; j++){
-    if (balls[j].getColor()< balls[j+1].getColor()){
-    swap(balls, j, j+1);
-    update();
-    }
-  }
 }
