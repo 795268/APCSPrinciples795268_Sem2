@@ -13,7 +13,7 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  //loadObjects();
+  loadObjects();
   frameRate(5);
   newButton();
 }
@@ -60,7 +60,7 @@ function choseSort(){
    text('Color Sort', 535, 670);
    text('Size Sort', 185, 670);
    checkWhat();
-  if ( what === 'color' || what === ' size'){
+  if ( what === 'color' || what === 'size'){
      if (what === 'color'){
        gameState = 3 ;
      }
