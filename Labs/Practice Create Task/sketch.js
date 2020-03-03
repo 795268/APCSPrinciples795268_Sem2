@@ -32,18 +32,29 @@ barSort();
 function newButton(){
   btnbarSort = new Button (150, 300, 150, 200, color(50, 100, 100));
   btnballSort = new Button (500, 300, 150, 200, color(100,50,100));
-  btnBTM = new Button ( 350,500,100, 200, color(100,100,50) );
+  btnBTM = new Button ( 350,100,100, 200, color(64,250,35) );
 }
 
 function barSort(){
   btnBTM.render();
+  fill(255);
+  text('Main Menu', 360, 320);
   bubbleSort();
-
+  if(btnBTM.isClicked()===true){
+    gameState =1;
+    background(5,5,5);
+  }
 }
 
 function ballSort(){
   btnBTM.render();
-bubbleSort();
+  fill(255);
+  text('Main Menu', 360, 320);
+  bubbleSort();
+  if(btnBTM.isClicked()===true){
+    gameState =1;
+    background(5,5,5);
+  }
 }
 function startGame(){
   btnbarSort.render();
@@ -113,7 +124,7 @@ function  update(){
     for(var i=0; i<balls.length; i++){
       balls[i].set(i);
     }
-    background(200,200,200);
+    background(0);
     runObjects();
   }
 }  // end update
