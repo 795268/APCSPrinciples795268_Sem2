@@ -1,6 +1,6 @@
 class Ball{
 
-  constructor(x, y, w, clr,r){
+  constructor(x, y, clr,r){
     this.x = x;
     this.y = y;
     this.clr = clr;
@@ -18,10 +18,6 @@ run(){
 
 getColor(){
   return this.r;
-}
-
-getHeight(){
-  return this.h;
 }
 
 set(i){

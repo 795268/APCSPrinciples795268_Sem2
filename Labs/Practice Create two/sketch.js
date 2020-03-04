@@ -2,8 +2,10 @@
 // 	2/25 practice create
 //  This is a comment
 //  The setup function function is called once when your program begins
-var bars=[] ;
-var balls=[] ;
+var barsC=[] ;
+var barsS = [];
+var ballsC=[] ;
+var ballsS = [];
 var sortType, what ;
 var barWidth, barHeight;
 var gameState = 1;
@@ -71,12 +73,12 @@ function choseSort(){
  }
 
 function sizeSort(){ // gamestate 4
-  loadObjects();
+  //loadObjects();
   bubbleSort();
 }
 
 function colorSort(){ // game state  3
-  loadObjects();
+  //loadObjects();
   bubbleSort();
 }
 // function barSort(){
@@ -103,66 +105,118 @@ function colorSort(){ // game state  3
 
 
 function loadObjects(){
-  if (sortType === 'ball'){
-    if (what === 'color'){ // sort balls by color
 
       for (var i =0 ; i < 20; i++){
         var red = random(0,255);
-        balls[i] = new Ball (i*40+20, 400, 30, color(red, 0, 0), red);
+        ballsC[i] = new Ball (i*40+20, 400, 30, color(red, 0, 0), red);
       }
-    }else if (what === ' size'){
-      for (var i =0 ; i < 10; i++){
+        for (var i =0 ; i < 10; i++){
       ballWidth = random(0,50);
-      balls[i] = new Ball ( i +20, 400, ballWidth, color(random(255)));
+      ballsS[i] = new Ball ( i +20, 400, ballWidth, color(random(255)));
     }
-  }
-   if (sortType === 'bar'){
-     if(what === 'color'){
+
        for (var i = 0; i< 40; i++){
          barWidth = (width/40);
          var red = random(0,255);
-         bars[i] = new Bar (i*barWidth, 0, barWidth, height, color(red, 0,0), red )
+         barsC[i] = new Bar (i*barWidth, 0, barWidth, height, color(red, 0,0), red )
        }
 
-     }else if (what === ' size'){ // sort bars by size
        for (var i = 0; i< 40; i++){
          barWidth = (width/40);
          barHeight = Math.floor(random(1, height));
-         bars[i]= new Bar(i*barWidth, height-barHeight, barWidth, barHeight);
+         barsS[i]= new Bar(i*barWidth, height-barHeight, barWidth, barHeight);
        }
-     }
+
    }
-}
-}
+
+
+// function loadObjects(){
+//   if (sortType === 'ball'){
+//     if (what === 'color'){ // sort balls by color
+//
+//       for (var i =0 ; i < 20; i++){
+//         var red = random(0,255);
+//         ballsC[i] = new Ball (i*40+20, 400, 30, color(red, 0, 0), red);
+//       }
+//     }else if (what === ' size'){
+//       for (var i =0 ; i < 10; i++){
+//       ballWidth = random(0,50);
+//       ballsS[i] = new Ball ( i +20, 400, ballWidth, color(random(255)));
+//     }
+//   }
+//    if (sortType === 'bar'){
+//      if(what === 'color'){
+//        for (var i = 0; i< 40; i++){
+//          barWidth = (width/40);
+//          var red = random(0,255);
+//          barsC[i] = new Bar (i*barWidth, 0, barWidth, height, color(red, 0,0), red )
+//        }
+//
+//      }else if (what === ' size'){ // sort bars by size
+//        for (var i = 0; i< 40; i++){
+//          barWidth = (width/40);
+//          barHeight = Math.floor(random(1, height));
+//          barsS[i]= new Bar(i*barWidth, height-barHeight, barWidth, barHeight);
+//        }
+//      }
+//    }
+// }
+// }
 
 function runObjects(){
   if (gameState===2){
-    for (var i = 0; i<bars.length; i++){
-      bars[i].run();
+    for (var i = 0; i<barsS.length; i++){
+      barsS[i].run();
+    }
+    for (var i = 0; i< barsC.length; i++){
+      barsC.run();
     }
   }else if (gameState===3 ){
-    for (var i =0 ; i<balls.length; i++){
-      balls[i].run();
+    for (var i =0 ; i<ballsS.length; i++){
+      ballsS[i].run();
       }
+      for (var i =0 ; i<ballsC.length; i++){
+        ballsC[i].run();
+        }
     }
+
   }
 
 
 function bubbleSort(){
   if (gameState===2 ){
-  for (var j = 0; j < bars.length-1; j++){
-    if (bars[j].getHeight()> bars[j+1].getHeight()){
-    swap(bars, j, j+1);
+    if(what === 'color'){
+      for (var j = 0; j < barsC.length-1; j++){
+        if (barsC[j].getColor()> barsC[j+1].getColor()){
+        swap(barsC, j, j+1);
+        update();
+        }
+      }
+
+    }else if(what === 'size'){
+  for (var j = 0; j < barsS.length-1; j++){
+    if (barsS[j].getHeight()> barsS[j+1].getHeight()){
+    swap(barsS, j, j+1);
     update();
     }
   }
+}
 }else if (gameState===3){
-  for (var j = 0; j < balls.length-1; j++){
-    if (balls[j].getColor()< balls[j+1].getColor()){ // sorts by color
-    swap(balls, j, j+1);
-    update();
+  if(what === 'color'){
+    for (var j = 0; j < ballsC.length-1; j++){
+      if (ballsC[j].getColor()< ballsC[j+1].getColor()){ // sorts by color
+      swap(ballsC, j, j+1);
+      update();
+        }
       }
-    }
+  }else if (what === 'size'){
+    for (var j = 0; j < ballsS.length-1; j++){
+      if (ballsS[j].getHeight()< ballsS[j+1].getHeight()){ // sorts by color
+      swap(ballsS, j, j+1);
+      update();
+        }
+        }
+      }
   }
 }
 
@@ -185,17 +239,35 @@ function checkWhat(){ // checks what the objects will be sorted by selected
 
 function  update(){
   if (gameState ===2 ){
-    for(var i=0; i<bars.length; i++){
-      bars[i].set(i);
+    if (what === 'color'){
+      for(var i=0; i<barsC.length; i++){
+        barsC[i].set(i);
+      }
+      background(0);
+      runObjects();
+    }else if (what === 'size'){
+      for(var i=0; i<barsS.length; i++){
+        barsS[i].set(i);
+      }
+      background(0);
+      runObjects();
     }
-    background(0);
-    runObjects();
+
   }else if (gameState===3){
-    for(var i=0; i<balls.length; i++){
-      balls[i].set(i);
+    if (what=== 'color'){
+      for(var i=0; i<ballsC.length; i++){
+        ballsC[i].set(i);
+      }
+      background(0);
+      runObjects();
+    }else if (what === 'size'){
+      for(var i=0; i<ballsS.length; i++){
+        ballsS[i].set(i);
+      }
+      background(0);
+      runObjects();
     }
-    background(0);
-    runObjects();
+
   }
 }  // end update
 
