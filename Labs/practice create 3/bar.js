@@ -1,32 +1,36 @@
 class Bar {
 
-constructor (x, y, w, h){
+constructor (x, y, w, clr, r, g, b){
 this.loc = createVector(x,y);
-
 this.w = w;
-this.h = h;
+this.clr = clr;
+this.r = r;
+this.g = g;
+this.b = b;
 }
 
 render(){
-  fill(200, 10, 20 );
-rect (this.loc.x, this.loc.y, this.w, this.h);
+  fill(this.clr);
+rect (this.loc.x, this.loc.y, this.w, 800);
 
 }
 
 run(){
   this.render();
-  this.update();
 }
 
-update(){
-
+getColor(){
+  if (color === 'red'){
+    return this.r;
+  }else if (color=== 'green'){
+    return this.g;
+  }else if (color === 'blue'){
+    return this.b;
+  }
 }
 
-getHeight(){
-  return this.h;
-}
 set(i){
-  this.loc.x=i*25;
+  this.loc.x=i*40+20;
 
 }
 

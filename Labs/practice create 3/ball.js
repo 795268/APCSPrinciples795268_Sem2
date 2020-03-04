@@ -1,10 +1,12 @@
 class Ball{
 
-  constructor(x, y, clr,r){
+  constructor(x, y, clr,r,g,b ){
     this.x = x;
     this.y = y;
     this.clr = clr;
     this.r = r;
+    this.g = g;
+    this.b = b;
   }
 
 render(){
@@ -17,7 +19,13 @@ run(){
 }
 
 getColor(){
-  return this.r;
+  if (color === 'red'){
+    return this.r;
+  }else if (color=== 'green'){
+    return this.g;
+  }else if (color === 'blue'){
+    return this.b;
+  }
 }
 
 set(i){
