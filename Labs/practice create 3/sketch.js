@@ -8,7 +8,7 @@ var barsB =[];
 var ballsB =[];
 var barsG=[];
 var ballsG =[];
-var color, sortType;
+var clr, sortType;
 var barWidth, barHeight;
 var gameState = 1;
 var  btnbarSort, btnballSort, btnBTM, btnBlue, btnRed, btnGreen;
@@ -31,9 +31,9 @@ function draw() {
   }else if (gameState === 3){ //ball sort
     redSort();
   }else if (gameState === 4){
-    blueSort();
-  }else if (gameState === 5){
     greenSort();
+  }else if (gameState === 5){
+    blueSort();
   }
 }
 
@@ -46,27 +46,6 @@ function newButton(){
   btnBlue = new Button (570, 500, 114, 150, color (0,0,150));
 }
 
-// function barSort(){
-//   btnBTM.render();
-//   fill(255);
-//   text('Main Menu', 360, 320);
-//   bubbleSort();
-//   if(btnBTM.isClicked()===true){
-//     gameState =1;
-//     background(5,5,5);
-//   }
-// }
-//
-// function ballSort(){
-//   btnBTM.render();
-//   fill(255);
-//   text('Main Menu', 360, 320);
-//   bubbleSort();
-//   if(btnBTM.isClicked()===true){
-//     gameState =1;
-//     background(5,5,5);
-//   }
-// }
 function startGame(){
   btnbarSort.render();
   btnballSort.render();
@@ -93,12 +72,14 @@ function choseColor(){
   text('Sort Green', 355, 670);
   text ('Sort Blue', 577, 670);
   checkColor();
-  if (color === 'red'){
-    gameState = 3;
-  }else if (color === 'green'){
-    gameState = 4;
-  }else if (color === 'blue'){
-    gameState = 5;
+  if (clr === 'red'|| clr === 'blue' || clr === 'green'){
+      if (clr === 'red'){
+      gameState = 3;
+    }else if (clr === 'green'){
+      gameState = 4;
+    }else if (clr === 'blue'){
+      gameState = 5;
+    }
   }
 }
 
@@ -177,11 +158,11 @@ function blueSort(){
 
 function checkColor(){
     if( btnRed.isClicked()=== true){
-      color = 'red';
+      clr = 'red';
     }else if (btnBlue.isClicked()=== true){
-      color = 'blue';
+      clr = 'blue';
     }else if (btnGreen.isClicked()=== true){
-      color = 'green';
+      clr = 'green';
     }
   }
 
