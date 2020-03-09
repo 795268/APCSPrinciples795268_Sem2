@@ -72,7 +72,7 @@ function choseColor(){
   text('Sort Green', 355, 670);
   text ('Sort Blue', 577, 670);
   checkColor();
-  if (clr === 'red'|| clr === 'blue' || clr === 'green'){
+
       if (clr === 'red'){
       gameState = 3;
     }else if (clr === 'green'){
@@ -80,7 +80,7 @@ function choseColor(){
     }else if (clr === 'blue'){
       gameState = 5;
     }
-  }
+
 }
 
 function loadObjects(){
@@ -136,23 +136,23 @@ function runObjects(){
 
 function redSort(){
     if(sortType === 'bar'){
-      bubbleSort(barsR);
+      arrSort(barsR);
     }else if (sortType === 'ball'){
-      bubbleSort(ballsR)
+      arrSort(ballsR)
     }
 }
 function greenSort(){
     if(sortType === 'bar'){
-      bubbleSort(barsG);
+      arrSort(barsG);
     }else if (sortType === 'ball'){
-      bubbleSort(ballsG)
+      arrSort(ballsG)
     }
 }
 function blueSort(){
   if(sortType === 'bar'){
-    bubbleSort(barsB);
+    arrSort(barsB);
   }else if (sortType === 'ball'){
-    bubbleSort(ballsB)
+    arrSort(ballsB)
   }
 }
 
@@ -167,7 +167,7 @@ function checkColor(){
   }
 
 
-function bubbleSort(arr){
+function arrSort(arr){
 
   for (var j = 0; j<arr.length-1;j++){
     if(arr[j].getColor()> arr[j+1].getColor()){
